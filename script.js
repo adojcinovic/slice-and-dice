@@ -1,11 +1,9 @@
-var buttons = document.querySelectorAll(".dots i");
-var details = document.querySelector(".author-quote");
-var author = document.createElement("p");
-var quote = document.createElement("h4");
-console.log(buttons);
-console.log(details);
+const buttons = document.querySelectorAll(".dots i");
+const details = document.querySelector(".author-quote");
+const author = document.createElement("p");
+const quote = document.createElement("h4");
 
-var obj = [
+const obj = [
   {
     quote:
       '"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt vero voluptas blanditiis nostrum non at aspernatur doloråofficia"',
@@ -36,18 +34,20 @@ quote.innerHTML = obj[0].quote;
 details.appendChild(quote);
 author.innerHTML = obj[0].author;
 details.appendChild(author);
-console.log(buttons);
+buttons[0].classList.add("active");
 
-buttons.forEach((element, index) => {
-  element.addEventListener("click", () => {
-    var text = obj.find((e, i) => {
+buttons.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    buttons.forEach((dot) => dot.classList.remove("active"));
+    let text = obj.find((element, i) => {
+      dot.classList.add("active");
       if (index === i) {
-        return e;
+        return element;
       }
     });
     author.innerHTML = text.author;
     quote.innerHTML = text.quote;
-    quotes.appendChild(author);
-    quotes.appendChild(quote);
+    author.appendChild(author);
+    quote.appendChild(quote);
   });
 });
